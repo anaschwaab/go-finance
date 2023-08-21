@@ -1,0 +1,9 @@
+.button-form {
+    padding: 1rem 2rem;
+    border-radius: 1.8rem;
+    background-color: var(--primary-color); 
+    border: none;
+    color: var(--primary-text-color);
+    font-family: var(--primary-font);
+    cursor: pointer;
+}
