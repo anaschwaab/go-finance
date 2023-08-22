@@ -116,7 +116,12 @@
     .login-container {
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        height: auto;
+    }
+
+    .logo-container {
+        height: auto;
+        position: relative;
     }
     
     .form-container {
