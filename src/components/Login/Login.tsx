@@ -40,21 +40,21 @@ async function handleSubmit(data: PropsLogin) {
 
 const usuarioSchema = yup.object().shape({
     email: yup.string().email('Por favor, digite um e-mail válido').required('Por favor, digite seu e-mail'),
-    senha: yup.string().required(),
+    senha: yup.string().required('Por favor, digite sua senha'),
 })
+
+const initialValuesForm = {email: '', senha: ''}
 
 export function Login() {
     return (
         <div className="login-container">
             <LogoContainer />
-            <div className="form-conteiner">
+            <div className="form-conteiner-login">
                 <h1 className='form-title'>Login</h1>
                 <p className="form-text">Entre ou <strong><a className="form-text-link" href="cadastro.html">faça seu cadastro</a></strong></p>
                 <Formik<PropsLogin>
-                    initialValues={{email: '', senha: ''}}
+                    initialValues={initialValuesForm}
                     onSubmit={handleSubmit}
-                    validateOnChange={false}
-                    validateOnBlur={false}
                     validationSchema={usuarioSchema}
                     >
                        
@@ -75,10 +75,10 @@ export function Login() {
                             type='password'
                             placeholder='Senha'
                             imgSrc={senhaIcon}
-                            erros={touched.email && errors.email}
+                            erros={touched.senha && errors.senha}
                         >
                         </Input>
-                        <Button>Entrar</Button>
+                        <Button text="Entrar" disabled={false}/>
                         <span className='login-span'>Esqueceu sua senha</span>
                     </Form>
                     )}  

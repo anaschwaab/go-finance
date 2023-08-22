@@ -1,27 +1,53 @@
-# React + TypeScript + Vite
+# Projeto GoFinance
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este documento descreve o desenvolvimento de um projeto em React e TypeScript, abordando os principais pontos da minha jornada, os desafios enfrentados e como foram solucionados. Além disso, fornecerei instruções detalhadas sobre como rodar o projeto em qualquer ambiente.
 
-Currently, two official plugins are available:
+## Minha Jornada no Desenvolvimento do Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Neste projeto tive menos dificuldade do que nos projetos anteriores, mas ainda assim algumas coisas foram difíceis de solucionar, mas acredito que aos poucos estou conseguindo assimilar mais os fundamentos do react. 
 
-## Expanding the ESLint configuration
+## Principais Desafios e Soluções
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Acredito que minhas principais dúvidas ainda são em como passar propriedades de componente pai para filho e pensar na componentização do projeto de um modo geral. Mas reassisti as aulas gravadas e também as monitorias sobre esses assustos, também solicitei ajuda de colegas e professores durante a atividade e consegui resolver as principais questões.
 
-- Configure the top-level `parserOptions` property like this:
+## Instruções para Executar o Projeto
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+O projeto foi desenvolvido utilizando as tecnologias VITE, React e TypeScript. Para que qualquer pessoa com acesso ao repositório possa rodar o projeto, siga as instruções abaixo:
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Pré-requisitos
+
+Certifique-se de ter o Node.js instalado em sua máquina. Você pode baixá-lo em (https://nodejs.org/).
+
+### Passos para Executar o Projeto
+
+1. Faça um clone do repositório para o seu ambiente local:
+
+   ```
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   ```
+
+2. Navegue até o diretório do projeto:
+
+   ```
+   cd nome-do-repositorio
+   ```
+
+3. Instale as dependências do projeto:
+
+   ```
+   npm install
+   ```
+
+4. Inicie o servidor de desenvolvimento:
+
+   ```
+   npm run dev
+   ```
+
+5. Abra o navegador e acesse (http://localhost:3000) para visualizar o projeto em execução.
+
+
+### Sobre o roteamento
+
+Nesta atividade não foi implementado o roteamento no projeto, portanto para analisar as diferentes páginas basta trocar o componente sendo renderizado no App.tsx, 
+renderizando um componente por vez.

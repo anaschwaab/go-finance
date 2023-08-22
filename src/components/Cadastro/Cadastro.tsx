@@ -42,7 +42,7 @@ const usuarioSchema = yup.object().shape({
             return nomeSobrenome.length >= 2
         }),
     email: yup.string().email('Por favor, digite um e-mail válido').required('Por favor, digite seu e-mail'),
-    senha: yup.string().min(8, 'A senha deve ter no mínimo 8 caracteres')
+    senha: yup.string().min(8, 'A senha deve ter no mínimo 8 caracteres').required('Por favor, digite uma senha')
         .matches(/[A-Z]/, 'A senha deve conter pelo menos uma letra maiúscula')
         .matches(/\W+/gm, 'A senha deve conter pelo menos um carácter especial'),
     confirmaSenha: yup.string().test(
@@ -51,9 +51,17 @@ const usuarioSchema = yup.object().shape({
         (value, context) => {
             return value === context.parent.senha
         }
-    )
+    ).required('Por favor, confirme sua senha'),
+    aceiteTermos: yup.bool().oneOf([true], 'É necessário aceitar os termos para cadastrar'),
 });
 
+const initialValuesForm = {
+    nomeSobrenome: '',
+    email: '',
+    senha: '',
+    confirmaSenha: '',
+    aceiteTermos: false
+}
 
 
 export function Cadastro() {
@@ -61,24 +69,16 @@ export function Cadastro() {
     return (
         <div className="login-container">
             <LogoContainer />
-            <div className="form-conteiner">
+            <div className="form-container">
                 <h1 className='form-title'>Cadastro</h1>
                 <p className="form-text">para iniciar</p>
                 <Formik<PropsCadastro>
-                    initialValues={{
-                        nomeSobrenome: '',
-                        email: '',
-                        senha: '',
-                        confirmaSenha: '',
-                        aceiteTermos: false
-                    }}
+                    initialValues={initialValuesForm}
                     onSubmit={handleSubmit}
-                    validateOnChange={false}
-                    validateOnBlur={false}
                     validationSchema={usuarioSchema}
                 >
 
-                    {({ setFieldValue, setFieldTouched, errors, touched, isValid }) => (
+                    {({ setFieldValue, errors, touched, isValid, isSubmitting, dirty }) => (
 
                         <Form className="form-content">
                             <Input
@@ -114,27 +114,26 @@ export function Cadastro() {
                                 erros={touched.confirmaSenha && errors.confirmaSenha}
                             />
                             <div className='form-checkbox'>
-                                <Field
-                                    id="html"
-                                    type="checkbox"
-                                    name='aceiteTermos'
-                                    checked={aceiteTermos}
-                                    onChange={() => {
-                                        setFieldValue('aceiteTermos', !aceiteTermos);
-                                        setAceiteTermos(!aceiteTermos);
-                                    }}
-                                />
-                                <label htmlFor="html"></label>
-                                <span className='form-checkbox-text'>
-                                    Declaro que li e concordo com os termos e condições de uso.
-                                </span>
+                                <div className="form-checkbox-input">
+                                    <Field
+                                        className="checkbox"
+                                        id="html"
+                                        type="checkbox"
+                                        name='aceiteTermos'
+                                        checked={aceiteTermos}
+                                        onChange={() => {
+                                            setFieldValue('aceiteTermos', !aceiteTermos);
+                                            setAceiteTermos(!aceiteTermos);
+                                        }}
+                                    />
+                                    <label htmlFor="html">Declaro que li e concordo com os termos e condições de uso.</label>
+                                </div>
+                                <span className='checkbox-error-message'>{touched.aceiteTermos && errors.aceiteTermos}</span>
                             </div>
-                            <Button style={{ backgroundColor: isValid && Object.keys(touched).length === 4 && !Object.values(errors).some(error => !!error) ? '#0575E6' : '#BBB' }}
-                                onClick={() => {
-                                    Object.keys(touched).forEach(field => {
-                                        setFieldTouched(field, true);
-                                    });
-                                }}>Cadastrar</Button>
+                            <Button 
+                                disabled={!isValid || isSubmitting || !dirty }
+                                text="Cadastrar"
+                            /> 
                             <span className="cadastro-span">Voltar</span>
                         </Form>
                     )}

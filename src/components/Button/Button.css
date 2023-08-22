@@ -7,3 +7,8 @@
     font-family: var(--primary-font);
     cursor: pointer;
 }
+
+.button-form:disabled {
+    background-color: #bbb;
+    color: #757575;
+}

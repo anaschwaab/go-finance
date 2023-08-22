@@ -2,13 +2,12 @@
     display: flex;
 }
 
-.form-conteiner {
+.form-container {
     margin: auto;
     display: flex;
     flex-direction: column;
     width: 307px;
     height: 565px;
-    /* height: 100vh; */
 }
 
 .form-title {
@@ -44,62 +43,61 @@
 
 .form-checkbox {
     display: flex;
+    flex-direction: column;
     gap: 0.5rem;
     justify-content: center;
 }
 
-/* input engraçadinho */
-.form-checkbox-text {
+.form-checkbox-input{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.checkbox-error-message {
+    color: var(--terciary-text-color);
+    font-family: var(--primary-font);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.checkbox {
+    appearance: none;
+    width: 1.5em;
+    height: 1.2em;
+    border-radius: 4px;
+    background: #EEE;
+    cursor: pointer;
+    margin-top: 3px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox:checked::before {
+    content: "x";
+    position: absolute;
+    padding-bottom: 1.5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #4F4F4F;
+    font-family: var(--primary-font);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.form-checkbox label {
     color: #4F4F4F;
     font-family: var(--primary-font);
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-}
-
-.form-checkbox input {
-    padding: 0;
-    height: initial;
-    width: initial;
-    margin-bottom: 0;
-    display: none;
-    cursor: pointer;
-}
-
-.form-checkbox label {
-    position: relative;
-    cursor: pointer;
-}
-
-.form-checkbox label:before {
-    content: '';
-    background-color: #eee;
-    width: 19px;
-    height: 19px;
-    border-radius: 4px;
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-    cursor: pointer;
-    margin-top: 3px;
-}
-
-.form-checkbox input:checked+label:after {
-    content: '\2716';
-    display: block;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 19px;
-    height: 19px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #5f5f5f;
-    font-size: 12px;
-    margin-top: 1px;
 }
 
 .cadastro-span {
@@ -112,27 +110,23 @@
     line-height: normal;
 }
 
-/* fim do input engraçadinho */
 
 @media (max-width: 600px) {
+
     .login-container {
         display: flex;
         flex-direction: column;
         height: 100vh;
     }
-
+    
     .form-container {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1;
-        position: absolute;
+        padding-top: 45px;
     }
+
 }
 
 @media (min-width: 600px) and (max-width: 992px) {
+
     .login-container {
         display: flex;
         flex-direction: column;
@@ -140,12 +134,7 @@
     }
 
     .form-container {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        z-index: 1;
-        position: absolute;
-        margin-top: 1.8rem;
+        height: 50%;
     }
+
 }
